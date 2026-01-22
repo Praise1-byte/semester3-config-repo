@@ -1,24 +1,23 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:employee_db
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: ""
+    url: jdbc:postgresql://localhost:5432/user_service
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-  h2:
-    console:
-      enabled: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-  port: 8082
+  port: 8081
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+app:
+  jwt:
+    secret: ReplaceWithAStrongSecretAtLeast32CharsLong!
+    accessExpirationMs: 900000
+    refreshExpirationMs: 604800000
